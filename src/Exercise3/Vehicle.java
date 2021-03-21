@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Created by Nikita on 13.03.2021 at 12:59
  */
-class Vehicle {
+public class Vehicle{
     private int id;
     private String name;
     private Brand brand;
@@ -29,8 +29,8 @@ class Vehicle {
         this.workshops = workshops;
         this.weight = weight;
         this.maxPermissibleWeight = maxPermissibleWeight;
-        this.maxSpeed = maxSpeed;
         this.speed = 0;
+        this.maxSpeed = maxSpeed;
     }
 
     /**
@@ -56,10 +56,10 @@ class Vehicle {
     public double brake() {
         if (speed >= 10) {
             speed -= 10;
-            System.out.println("The Vehicle " + this.name + " is decreasing it's speed...");
+            System.out.println("The Vehicle " + brand.getName() + this.name + " is decreasing it's speed...");
             System.out.println(speed);
         } else {
-            System.out.println("The vehicle " + this.name + " has stopped...");
+            System.out.println("The vehicle " + brand.getName() + this.name + " has stopped...");
             speed = 0;
         }
         return speed;
@@ -71,7 +71,7 @@ class Vehicle {
             speed += 10;
             System.out.println("The Vehicle " + brand.getName() + " " + getName() + " is increasing it's speed...");
         } else {
-            System.out.println("The Vehicle " + this.name + " is on it's max speed...");
+            System.out.println("The Vehicle " + brand.getName() + this.name + " is on it's max speed...");
             speed = maxSpeed;
         }
         return speed;
@@ -82,19 +82,23 @@ class Vehicle {
      * Kilometer soll jeweils dreimal die Methode accelerate() bzw. brake() aufgerufen werden.
      */
     public void drive(int kilometers) {
+        int drivenkm = 0;
         for (int i = 0; i < kilometers; i++) {
+            drivenkm++;
             for (int j = 0; j < 3; j++) {
                 accelerate();
                 brake();
             }
         }
-        System.out.println("Vehicle " + this.name + " has made a test-drive...");
+        System.out.println("Gefahrene Kilometer: " + drivenkm + " km");
+        System.out.println("Vehicle " + this.brand.getName() + " " + this.name + " has made a test-drive...");
     }
 
     /**
      * Gibt alle verfügbaren Informationen (Werte
      * der Instanzvariablen) auf dem Bildschirm aus.
      */
+
     public void printInfo() {
         System.out.println(
                 "ID Num " + this.id +

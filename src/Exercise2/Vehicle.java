@@ -16,24 +16,15 @@ class Vehicle {
     private int maxPermissibleWeight;
     private double speed;
     private double maxSpeed;
-    private static long nextID = 0;
+    private static long nextID = 0; // Aufgabe 5
 
-//        public Vehicle(){
-//            workshops = new ArrayList<>();
-//        }
-
-    /**
-     * Aufgabe 5
-     */
-
-    private static long getNextID() {
-        return nextID += 1;
-    }
+        public Vehicle(){
+            workshops = new ArrayList<>();
+        }
 
     public Vehicle(int id, String name, Brand brand,
                    ArrayList<Workshop> workshops, int weight,
                    int maxPermissibleWeight, double maxSpeed) {
-//            workshops = new ArrayList<>();
         this.id = id;
         this.name = name;
         this.brand = brand;
@@ -41,15 +32,29 @@ class Vehicle {
         this.weight = weight;
         this.maxPermissibleWeight = maxPermissibleWeight;
         this.maxSpeed = maxSpeed;
+        this.speed = 0;
+    }
+
+    /**
+     * Aufgabe 5
+     */
+
+    private static long getNextID() {
+        return nextID++;
+    }
+
+    private static void setNextID(){
+        nextID++;
     }
 
     public int getId() {
-        return (int) (getNextID()); // type castig long to int
+        id = (int) getNextID();
+        return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 
     public double brake() {
         if (speed >= 10) {
@@ -87,7 +92,6 @@ class Vehicle {
             }
         }
         System.out.println("Vehicle " + this.name + " has made a test-drive...");
-
     }
 
     /**

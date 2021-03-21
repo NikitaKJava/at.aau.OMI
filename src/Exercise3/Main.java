@@ -27,17 +27,23 @@ public class Main {
 //        Vehicle testDrive = new Vehicle();
 //        testDrive.drive(20);
 
-        Vehicle vehicle1 = new Vehicle("C220 TDI", BENZ, workshops, 1950, 2500, 220);
-        Vehicle vehicle2 = new Vehicle("M3", BMW, workshops, 1800, 2300, 300);
-        Vehicle vehicle3 = new Vehicle("ARTEON", VW, workshops, 1900, 2400, 240);
-        Vehicle vehicle4 = new Vehicle("X", TESLA, workshops, 2500, 3000, 250);
-        vehicle4.drive(20);
+//        Vehicle vehicle1 = new Vehicle("C220 TDI", BENZ, workshops, 1950, 2500, 220);
+//        Vehicle vehicle2 = new Vehicle("M3", BMW, workshops, 1800, 2300, 300);
+//        Vehicle vehicle3 = new Vehicle("ARTEON", VW, workshops, 1900, 2400, 240);
+//        Vehicle vehicle4 = new ElectricalCar("X", TESLA, workshops, 2500, 3000, 250, 100, 100, 1);
+
+        Car car1 = new Car("C220 TDI", BENZ, workshops, 1950, 2500, 220, 40, 60, 6);
+        Car car2 = new Car("M3", BMW, workshops, 1800, 2300, 300, 30, 70, 8);
+        Car car3 = new Car("ARTEON", VW, workshops, 1900, 2400, 240, 25, 65, 9);
+        ElectricCar car4 = new ElectricCar("X", TESLA, workshops, 2500, 3000, 250, 100, 100, 10);
 
         VehicleAdministration admin = new VehicleAdministration();
-        admin.addVehicle(vehicle1);
-        admin.addVehicle(vehicle2);
-        admin.addVehicle(vehicle3);
-        admin.addVehicle(vehicle4);
+        admin.addVehicle(car1);
+        admin.addVehicle(car2);
+        admin.addVehicle(car3);
+        admin.addVehicle(car4);
+        car4.drive(20);
+
 
 //        admin.printAllVehicles(); //demonstration of printing method working
 //        admin.printAllVehiclesByWeight(); //demonstration of printing by weight method working

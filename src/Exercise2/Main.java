@@ -21,27 +21,30 @@ public class Main {
         list.add(Austria);
         list.add(Germany);
 
+        Vehicle testDrive = new Vehicle();
         VehicleAdministration admin = new VehicleAdministration();
-        admin.addVehicle(new Vehicle(1001, "C220 TDI", BENZ, list, 1950, 2500, 220));
-        admin.addVehicle(new Vehicle(1002, "M3", BMW, list, 1800, 2300, 300));
-        admin.addVehicle(new Vehicle(1003, "ARTEON", VW, list, 1900, 2400, 240));
+        admin.addVehicle(new Vehicle(testDrive.getId(), "C220 TDI", BENZ, list, 1950, 2500, 220));
+        admin.addVehicle(new Vehicle(testDrive.getId(), "M3", BMW, list, 1800, 2300, 300));
+        admin.addVehicle(new Vehicle(testDrive.getId(), "ARTEON", VW, list, 1900, 2400, 240));
 
         /**
          * Test methods
          */
 
+//        testDrive.drive(20);
+
 //        admin.printAllVehicles(); //demonstration of printing method working
 
-        admin.printAllVehiclesByWeight(); //demonstration of printing by weight method working
+//        admin.printAllVehiclesByWeight(); //demonstration of printing by weight method working
 
 //        admin.removeVehicle(1002); //demonstration of deleting a certain vehicle by ID
-//        admin.printAllVehicles();
+        admin.printAllVehicles();
 //        admin.search(1001); //demonstration of searching a certain vehicle by ID
         /**
          * Aufgabe 5.2: Implementieren Sie in der Klasse VehicleAdministration die Methode public void
          * search(String brandName). Die Methode soll alle Fahrzeuge mit dem übergebenen
          * Markennamen am Bildschirm ausgeben.
          */
-        admin.search('/');    //demo of searchin' vehicles by their name
+//        admin.search('/');    //demo of searchin' vehicles by their name
     }
 }

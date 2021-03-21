@@ -1,5 +1,6 @@
 package Exercise3;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -14,29 +15,37 @@ import java.util.Scanner;
  * stets mit 0 initialisiert. Der Konstruktor von ElectricCarmuss den Konstruktor von Vehiclemithilfe von super(...) aufrufen.
  * Realisieren Sie auch wieder entsprechende Getter-und Setter-Methoden.
  */
-public class ElectricalCar extends Vehicle {
+public class ElectricCar extends Vehicle {
     private double batteryLevel;
     private double maxBatteryCapacity;
     private double powerConsumption;
 
-    public ElectricalCar() {
-        super();
-        this.batteryLevel = getBatteryLevel(); // current battery level kWh
-        this.maxBatteryCapacity = getMaxBatteryCapacity(); // kWh
-        this.powerConsumption = getPowerConsumption(); // kWh / 100km
+    public ElectricCar(String name,
+                         Brand brand,
+                         ArrayList<Workshop> workshops,
+                         int weight, int maxPermissibleWeight,
+                         double maxSpeed,
+                         double batteryLevel,
+                         double maxBatteryCapacity,
+                         double powerConsumption) {
+        super(name, brand, workshops, weight, maxPermissibleWeight, maxSpeed);
+        this.batteryLevel = batteryLevel; // current battery level kWh
+        this.maxBatteryCapacity = maxBatteryCapacity; // kWh
+        this.powerConsumption = powerConsumption; // kWh / 100km
     }
 
     public void charge(double power, double hours) {
         System.out.println("charging the car with" + power + "kWh");
         if (power <= getMaxBatteryCapacity() - power) {
             this.batteryLevel += power;
-            System.out.println("The Vehicle " + super.getBrand() + " " + super.getName() + " is charged with " + batteryLevel + "kWh");
+            System.out.println("The e-car " + super.getBrand() + " " + super.getName() + " is charged with " + batteryLevel + "kWh");
         } else {
-            System.out.println("The Vehicle " + super.getBrand() + " " + super.getName() + " is on it's max fuel...");
+            System.out.println("The e-car " + super.getBrand() + " " + super.getName() + " is on it's max fuel...");
             this.batteryLevel = maxBatteryCapacity;
         }
     }
 
+    @Override
     public void drive(int kilometers) {
         int tempkm = 0;
         for (int i = 0; i < kilometers; i++) {

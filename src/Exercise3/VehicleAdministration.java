@@ -120,4 +120,25 @@ class VehicleAdministration {
         sortAllVehiclesByWeight();
         printAllVehicles();
     }
+
+    /** Uebungsblatt 3 Aufgabe 4.2
+     * Erweitern Sie VehicleAdministration um folgende Methoden:
+     */
+    public void fillUpAllCars(double fuel){
+        for (Vehicle vehicle: vehicles){
+            if (vehicle instanceof Car){
+                ((Car) vehicle).fillUp(fuel);
+            }
+        }
+        System.out.println("All cars are filled up on " +  fuel + "litres...");
+    }
+
+    public void chargeAllElectricCars(double power, double hours) {
+        for (Vehicle vehicle: vehicles) {
+            if(vehicle instanceof ElectricCar){
+                ((ElectricCar) vehicle).charge(power, hours);
+            }
+        }
+        System.out.println("All e-cars now charged...");
+    }
 }
