@@ -32,17 +32,19 @@ public class Main {
 //        Vehicle vehicle3 = new Vehicle("ARTEON", VW, workshops, 1900, 2400, 240);
 //        Vehicle vehicle4 = new ElectricalCar("X", TESLA, workshops, 2500, 3000, 250, 100, 100, 1);
 
-        Car car1 = new Car("C220 TDI", BENZ, workshops, 1950, 2500, 220, 40, 60, 6);
-        Car car2 = new Car("M3", BMW, workshops, 1800, 2300, 300, 30, 70, 8);
-        Car car3 = new Car("ARTEON", VW, workshops, 1900, 2400, 240, 25, 65, 9);
-        ElectricCar car4 = new ElectricCar("X", TESLA, workshops, 2500, 3000, 250, 100, 100, 10);
+        Car car1 = new Car("C220 TDI", BENZ, workshops, 1950, 2500, 220, 60, 0.6);
+        Car car2 = new Car("M3", BMW, workshops, 1800, 2300, 300, 70, 0.8);
+        Car car3 = new Car("ARTEON", VW, workshops, 1900, 2400, 240, 65, 0.9);
+        ElectricCar car4 = new ElectricCar("X", TESLA, workshops, 2500, 3000, 250, 100, 1.5);
 
         VehicleAdministration admin = new VehicleAdministration();
         admin.addVehicle(car1);
         admin.addVehicle(car2);
         admin.addVehicle(car3);
         admin.addVehicle(car4);
-        car4.drive(20);
+
+//        car4.charge(50, 1);
+        car3.drive(2);
 
 
 //        admin.printAllVehicles(); //demonstration of printing method working

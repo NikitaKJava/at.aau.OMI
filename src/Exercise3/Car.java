@@ -16,7 +16,6 @@ public class Car extends Vehicle{
                int weight,
                int maxPermissibleWeight,
                double maxSpeed,
-               double fuel,
                double maxFuel,
                double fuelConsumption){
         super(name, brand, workshops, weight, maxPermissibleWeight, maxSpeed);
@@ -26,37 +25,46 @@ public class Car extends Vehicle{
     }
 
     public void fillUp(double fuel){
-        System.out.println("filling the car with" + fuel + "Liters");
+        System.out.println("Filling the " + super.getBrand().getName() + " " + super.getName() + " with " + fuel + " liters");
         if (fuel <= getMaxFuel() - fuel) {
             this.fuel += fuel;
-            System.out.println("The car " + super.getBrand() + " " + super.getName() + " is filled up with " + maxFuel + "liters");
+            System.out.println("The car " + super.getBrand().getName() + " " + super.getName() + " is filled up with " + getFuel() + " liters");
         } else {
-            System.out.println("The car " + super.getBrand() + " " + super.getName() + " is on it's max fuel...");
+            System.out.println("The car " + super.getBrand().getName() + " " + super.getName() + " is on it's max fuel...");
             this.fuel = maxFuel;
         }
     }
-
+    @Override
     public void drive(int kilometers){
         Scanner scanner = new Scanner(System.in);
         System.out.println("How many liters do you want to fill up?");
         fillUp(scanner.nextDouble());
+        double tempfuel = fuel;
+        int drivenkm = 0;
+        for (int i = 0; i < kilometers; i++) {
+            drivenkm++;
+            for (int j = 0; j < 7; j++) {
+                drivenkm++;
+                accelerate();
+                fuel -= fuelConsumption;
+            }
+            while (speed > 0){
+                drivenkm++;
+                brake();
+            }
+        }
+        System.out.println("Driven kilometer: " + drivenkm + " km");
+        System.out.printf("Consumed fuel: %.2f liter(s)\n" , (tempfuel - fuel));
+        System.out.println("Test drive with " + getBrand().getName() + " " + getName() + " is over.");
 
     }
     @Override
     public void printInfo(){
-        System.out.println(
-                "ID Num " + getId() +
-                        "\nVehicle: " + getName() +
-                        "\nBrand: " + getBrand().getName() +
-                        "\nWeight: " + getWeight() + " kg" +
-                        "\nMax Permissible Weight: " + getMaxPermissibleWeight() + " kg" +
-                        "\nMax Speed: " + getSpeed() + " km/h" +
-                        "\n--------------------------------"
-        );
-        System.out.println( "----FUEL----" +
+        super.printInfo();
+        System.out.println( "--- FUEL INFO " + super.getBrand().getName() + " " + super.getName() + " ---" +
                             "\n fuel: " + getFuel() +
                             "\n maxFuel: " + getMaxFuel() +
-                            "\n fuelConsumption: " + getFuelConsumption());
+                            "\n fuelConsumption: " + getFuelConsumption() + "\n--------------------------------");
     }
 
 

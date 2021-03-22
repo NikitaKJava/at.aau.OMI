@@ -12,7 +12,7 @@ public class Vehicle{
     private ArrayList<Workshop> workshops;
     private int weight;
     private int maxPermissibleWeight;
-    private double speed;
+    protected double speed;
     private double maxSpeed;
     private static int nextID = 0; // Aufgabe 5
 
@@ -49,15 +49,14 @@ public class Vehicle{
         return id;
     }
 
-//    public void setId(int id) {
-//        this.id = id;
-//    }
-
     public double brake() {
         if (speed >= 10) {
             speed -= 10;
-            System.out.println("The Vehicle " + brand.getName() + this.name + " is decreasing it's speed...");
-            System.out.println(speed);
+            System.out.println("-----braking-----");
+            System.out.println("The vehicle " + brand.getName() + " " + this.name + " is decreasing it's speed --> " + speed + " km/h");
+        }
+        if (speed == 0) {
+            System.out.println("The vehicle " + brand.getName() + this.name + " has stopped...");
         } else {
             System.out.println("The vehicle " + brand.getName() + this.name + " has stopped...");
             speed = 0;
@@ -69,9 +68,9 @@ public class Vehicle{
     public double accelerate() {
         if (speed <= maxSpeed - 10) {
             speed += 10;
-            System.out.println("The Vehicle " + brand.getName() + " " + getName() + " is increasing it's speed...");
+            System.out.println("The vehicle " + brand.getName() + " " + getName() + " is increasing it's speed --> " + speed + " km/h");
         } else {
-            System.out.println("The Vehicle " + brand.getName() + this.name + " is on it's max speed...");
+            System.out.println("The vehicle " + brand.getName() + this.name + " is on it's max speed...");
             speed = maxSpeed;
         }
         return speed;
@@ -82,16 +81,13 @@ public class Vehicle{
      * Kilometer soll jeweils dreimal die Methode accelerate() bzw. brake() aufgerufen werden.
      */
     public void drive(int kilometers) {
-        int drivenkm = 0;
         for (int i = 0; i < kilometers; i++) {
-            drivenkm++;
             for (int j = 0; j < 3; j++) {
                 accelerate();
                 brake();
             }
         }
-        System.out.println("Gefahrene Kilometer: " + drivenkm + " km");
-        System.out.println("Vehicle " + this.brand.getName() + " " + this.name + " has made a test-drive...");
+        System.out.println("Testdrive with " + this.brand.getName() + " " + this.name + " has been made.");
     }
 
     /**

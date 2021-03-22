@@ -25,22 +25,21 @@ public class ElectricCar extends Vehicle {
                          ArrayList<Workshop> workshops,
                          int weight, int maxPermissibleWeight,
                          double maxSpeed,
-                         double batteryLevel,
                          double maxBatteryCapacity,
                          double powerConsumption) {
         super(name, brand, workshops, weight, maxPermissibleWeight, maxSpeed);
-        this.batteryLevel = batteryLevel; // current battery level kWh
+        this.batteryLevel = 0; // current battery level kWh
         this.maxBatteryCapacity = maxBatteryCapacity; // kWh
         this.powerConsumption = powerConsumption; // kWh / 100km
     }
 
     public void charge(double power, double hours) {
-        System.out.println("charging the car with" + power + "kWh");
+        System.out.println("\n Charging the E-CAR with " + power + " kWh. Waiting " + hours + " hour(s)...");
         if (power <= getMaxBatteryCapacity() - power) {
             this.batteryLevel += power;
-            System.out.println("The e-car " + super.getBrand() + " " + super.getName() + " is charged with " + batteryLevel + "kWh");
+            System.out.println("The E-CAR " + super.getBrand().getName() + " " + super.getName() + " is charged with " + batteryLevel + " kWh.");
         } else {
-            System.out.println("The e-car " + super.getBrand() + " " + super.getName() + " is on it's max fuel...");
+            System.out.println("The E-CAR " + super.getBrand().getName() + " " + super.getName() + " is on it's max fuel...");
             this.batteryLevel = maxBatteryCapacity;
         }
     }
@@ -48,19 +47,27 @@ public class ElectricCar extends Vehicle {
     @Override
     public void drive(int kilometers) {
         int tempkm = 0;
+        System.out.println("\n🚗 🚗 🚗 🚗  testdrive 🚗 🚗 🚗 🚗");
         for (int i = 0; i < kilometers; i++) {
             tempkm++;
             batteryLevel--;
             if (batteryLevel <= 1) {
-                System.out.println("Battery level 1%. Vehicle stopped" + "Driven range: " + tempkm);
+                while (speed > 0){
+                    this.brake();
+                }
+                System.out.println("Battery level 1%. Vehicle stopped..." + " Driven range: " + tempkm);
+                break;
             }
             for (int j = 0; j < 3; j++) {
                 accelerate();
+//                brake();
+            }
+            while (speed > 0){
                 brake();
             }
         }
     }
-
+    @Override
     public double brake() {
         if (super.getSpeed() > 0) {
             this.batteryLevel += 0.001;
@@ -68,12 +75,13 @@ public class ElectricCar extends Vehicle {
         }
         return super.getSpeed();
     }
-
+    @Override
     public void printInfo() {
-        System.out.println("----Battery level----" +
+        super.printInfo();
+        System.out.println("--- Battery level " + super.getBrand().getName() + " " + super.getName() + " ---" +
                 "\n battery level: " + getBatteryLevel() +
                 "\n max battery capacity: " + getMaxBatteryCapacity() +
-                "\n power consumption: " + getPowerConsumption());
+                "\n power consumption: " + getPowerConsumption() + "\n--------------------------------");
     }
 
 
